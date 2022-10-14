@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID19 - Tracker</title>
+    <script src="tailwind.js"></script>
+    <link rel="icon" href="virus.svg">
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .container{
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh;
+        }
+        .data-child{
+            background: #FFFFFF;
+            box-shadow: 0px 0px 57px -7px rgba(119, 119, 119, 0.12);
+            border-radius: 24px;
+        }
+        @media screen and (min-width: 640px) {
+            .container{
+                background-image: url('bgmobile.jpg');
+            }
+        }
+        @media screen and (min-width: 768px) {
+            .container{
+                background-image: url('bg.jpg');
+            }
+        }
+    </style>
+</head>
+
+<body class="container">
+    <nav class=" flex flex-row bg-white justify-between  md:px-32 md:py-5 sm:px-12 sm:py-8 border border-b-2 fixed w-full">
+        <div class="text-xl font-bold">COVID-19</div>
+        <div class="item flex flex-row">
+            <a href="#data"><button type="button" class=" px-6 py-2.5 bg-green-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Track Now</button></a>
+        </div>
+    </nav>   
+
+    <div class="parent md:px-52 md:py-40 sm:px-20 sm:py-28">
+        <div class="title mb-16 flex md:flex-row sm:flex-col-reverse justify-between ">
+            <div class="text pt-12 flex flex-col md:text-start sm:text-center">
+                <div class="flex md:justify-start sm:justify-center">
+                    <div class="bg-[url('alert2.svg')] bg-no-repeat md:w-[185px] md:h-[40px] sm:w-[200px] sm:h-[50px]"></div>
+                </div>
+                <h1 class="md:text-[42px] sm:text-[32px] font-bold mt-5 mb-2">COVID-19 Tracker</h1>
+                <p class="w-[60vh] mb-10">How is coronavirus affecting the world's 56 most vulnerable countries? View updated humanitarian data including COVID cases, people in need now.</p>
+                <a href="#data"><button type="button" class=" px-10 py-4 bg-green-600 text-white font-medium text-[12px] leading-tight uppercase rounded shadow-md hover:bg-green-700 hover:shadow-lg focus:bg-green-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-800 active:shadow-lg transition duration-150 ease-in-out">Start Track</button></a>
+            </div>
+            <div class="illus w-full flex justify-center sm:mt-10">
+                <div class="bg-[url('amico.svg')] bg-cover md:w-[450px] md:h-[450px] sm:w-[350px] sm:h-[350px]"></div>
+            </div>
+        </div>
+
+        <div id="data" class="pt-28">
+            <div class="data-child md:py-16 md:px-32 sm:px-8 sm:py-16">
+                <form id="formData" class="mb-16 flex items-center sm:px-16 md:px-40">   
+                    <label for="simple-search" class="sr-only">Search</label>
+                    <div class="w-full ">
+                        <input type="text" id="covid-search" class="bg-gray-50 border border-slate350text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5" placeholder="Input Coutry" required>
+                    </div>
+                    <button type="submit" class="p-2.5 ml-2 text-sm font-medium text-white bg-green-700 rounded-lg border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <span class="sr-only">Search</span>
+                    </button>
+                </form>
+                
+                <div class="kasus">
+                    <div class="kasus-empty hidden text-center">
+                        <div class="parent1 bg-green-100 border-t border-b border-green-500 text-green-700 md:px-4 md:py-3 sm:py-8" role="alert">
+                            <p class="font-bold">No Data Availabe</p>
+                            <p class="msg2 text-sm">Please Input Country.</p>
+                          </div>
+                    </div>
+                    <div class="kasus-exist ">
+                        <div class="kasus-1 mb-16 flex md:flex-row sm:flex-col md:justify-between sm:justify-center">
+                            <div class="baru md:border-l-2  sm:border-x-2 w-[32vh] border-slate-300 text-center">
+                                <h1 class="text-[18px] text-slate-500">New Cases</h1>
+                                <ul class="text-[36px] font-bold text-blue-500">0</ul>
+                            </div>
+                            <div class="aktif md:border-x-2  sm:border-x-2 w-[32vh] border-slate-300 text-center">
+                                <h1 class="text-[18px] text-slate-500">Active Cases</h1>
+                                <ul class="text-[36px] font-bold text-yellow-500">0</ul>
+                            </div>
+                            <div class="sembuh md:border-r-2  sm:border-x-2 w-[32vh] border-slate-300 text-center">
+                                <h1 class="text-[18px] text-slate-500">Recovered</h1>
+                                <ul class="text-[36px] font-bold text-green-500">0</ul>
+                            </div>
+                            <div class="mati md:border-r-2 sm:border-x-2  w-[32vh] border-slate-300 text-center">
+                                <h1 class="text-[18px] text-slate-500">Death</h1>
+                                <ul class="text-[36px] font-bold text-red-500">0</ul>
+                            </div>
+                        </div>
+                        <div class="kasus-2 px-48 mb-16 flex flex row justify-between">
+                            <div class="total md:border-x-2 sm:border-x-2  w-[32vh] border-slate-300 text-center">
+                                <h1 class="text-[18px] text-slate-500">Total Cases</h1>
+                                <ul class="text-[36px] font-bold">0</ul>
+                            </div>
+                            <div class="populasi md:border-r-2 sm:border-x-2  w-[32vh] border-slate-300 text-center">
+                                <h1 class="text-[18px] text-slate-500">Total Population</h1>
+                                <ul class="text-[36px] font-bold">0</ul>
+                            </div>
+                        </div>
+                        <div class="text-center update">Last update : </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div id="footer" class="mt-32">
+            <div  class="text-center mb-10 flex justify-center">
+                <a href="https://github.com/mesifer"><img src="_Github.svg" alt=""></a>
+            </div>
+            <div class="text-center font-md text-slate-500">
+                Copyright 2022 - @Bagus Ridho R
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const form = document.getElementById('formData');
+    const input = document.querySelector("#covid-search")
+    const kasusExist = document.querySelector(".kasus-exist")
+    const kasusEmpty = document.querySelector(".kasus-empty")
+    const baru = document.querySelector(".baru")
+    const mati = document.querySelector(".mati")
+    const sembuh = document.querySelector(".sembuh")
+    const aktif = document.querySelector(".aktif")
+    const update = document.querySelector(".update")
+    const populasi = document.querySelector(".populasi")
+    const total = document.querySelector(".total")
+    
+    const options = {
+            method: 'GET',
+            headers: {
+                'X-RapidAPI-Key': 'c2c9c36727msh7d86b260a48a16fp1d4141jsnc6891b0c1202',
+                'X-RapidAPI-Host': 'covid-193.p.rapidapi.com'
+            }
+    };
+
+    form.addEventListener('submit', callbackFunction);
+    function callbackFunction(event) {
+        event.preventDefault();
+
+        kasusEmpty.classList.add("hidden");
+        kasusExist.classList.remove("hidden")
+        
+         fetch(`https://covid-193.p.rapidapi.com/statistics?country=${input.value}`, options)
+            .then(response => response.json())
+            .then(response => {
+                let dataKasus = response.response
+                let timeStamp = dataKasus[0].time
+                let time = formatDate(timeStamp);
+
+                renderText(baru,dataKasus[0].cases.new);
+                renderText(aktif,dataKasus[0].cases.active);
+                renderText(sembuh,dataKasus[0].cases.recovered);
+                renderText(mati,dataKasus[0].deaths.total);
+                renderText(total,dataKasus[0].cases.total);
+                renderText(populasi,dataKasus[0].population);
+         
+                update.innerHTML = `Last Update : ${time}`
+            })
+            .catch(err => {
+                kasusEmpty.classList.remove("hidden");
+                kasusEmpty.querySelector(".parent1 .msg2").innerHTML = "Please Input Another Country."
+                kasusExist.classList.add("hidden")
+                console.error(err)
+            });
+        };
+
+        function formatDate(timeStamp) {
+            console.log(timeStamp)
+            timeStamp = timeStamp.split("T")
+                let date = timeStamp[0];
+                timeStamp = timeStamp[1].split("+")
+                let time = timeStamp[0]
+                timeStamp = `${date} ${time}`
+            return timeStamp;
+        }
+
+        function renderText(parent, data) {
+            parent.querySelector("ul").innerHTML = data;
+        }
+    </script>
+</html>
